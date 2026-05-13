@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CK Construction | Building Excellence Since 2001</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ck-dark': '#0a1628',
+                        'ck-navy': '#0f1f3a',
+                        'ck-blue': '#1a3a5c',
+                        'ck-accent': '#c9a96e',
+                        'ck-accent-light': '#e8d5a3',
+                        'ck-gray': '#1e2d42',
+                        'ck-light': '#f0f4f8',
+                        'ck-text': '#8896ab',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: #0a1628; color: #f0f4f8; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a1628; }
+        ::-webkit-scrollbar-thumb { background: #1a3a5c; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #c9a96e; }
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.7) 40%, rgba(10,22,40,0.4) 100%);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0a1628 0%, #0f1f3a 50%, #1a3a5c 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(201, 169, 110, 0.15);
+        }
+        .service-card:hover .service-icon {
+            color: #c9a96e;
+            transform: scale(1.1);
+        }
+        .filter-btn.active {
+            background: #c9a96e;
+            color: #0a1628;
+        }
+        .nav-scrolled {
+            background: rgba(10, 22, 40, 0.95) !important;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+        .form-input:focus {
+            border-color: #c9a96e;
+            box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.2);
+        }
+        .img-zoom {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .img-zoom:hover {
+            transform: scale(1.05);
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .skeleton {
+            background: linear-gradient(90deg, #1e2d42 25%, #2a3d56 50%, #1e2d42 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        .team-overlay {
+            background: linear-gradient(to top, rgba(10,22,40,0.95) 0%, transparent 100%);
+        }
+        .deco-line {
+            width: 60px;
+            height: 3px;
+            background: #c9a96e;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-anim {
+            animation: float 3s ease-in-out infinite;
+        }
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(201, 169, 110, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 169, 110, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+        const { motion, AnimatePresence, useInView } = window.Motion;
+
+        // ==================== DATA ====================
+        const services = [
+            { id: 1, title: "Health Facilities", icon: "fa-hospital", desc: "Construction and rehabilitation of modern healthcare infrastructure including clinics and hospitals.", category: "institutional" },
+            { id: 2, title: "School Blocks", icon: "fa-school", desc: "Building durable educational facilities from primary schools to secondary institutions.", category: "institutional" },
+            { id: 3, title: "Office Buildings", icon: "fa-building", desc: "Commercial office spaces designed for productivity and professional environments.", category: "commercial" },
+            { id: 4, title: "Residential Houses", icon: "fa-house-chimney", desc: "Custom residential construction from single-family homes to multi-unit dwellings.", category: "residential" },
+            { id: 5, title: "Bridges", icon: "fa-road-bridge", desc: "Engineering robust bridge infrastructure including concrete deck bridges for communities.", category: "infrastructure" },
+            { id: 6, title: "Markets & Bus Depots", icon: "fa-store", desc: "Public infrastructure for commerce and transportation hubs.", category: "infrastructure" },
+            { id: 7, title: "School Hostels", icon: "fa-bed", desc: "Student accommodation facilities built for comfort, safety, and durability.", category: "institutional" },
+            { id: 8, title: "Flats & Apartments", icon: "fa-building-user", desc: "Multi-story residential developments with modern amenities and finishes.", category: "residential" },
+        ];
+
+        const projects = [
+            { id: 1, title: "Livuwazi Concrete Deck Bridge", category: "infrastructure", value: "MK84,999,955", client: "Dedza District Council", year: "2025-2026", location: "Mayani North Ward, Dedza District", image: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=800&q=80", desc: "A vital concrete deck bridge connecting communities across the Livuwazi river, improving accessibility and economic activity." },
+            { id: 2, title: "EQUALS Project - School Construction", category: "institutional", value: "MK543,953,329", client: "Ministry of Education", year: "2023-2024", location: "Msalura CDSS & Chipoka Secondary, Salima", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80", desc: "Construction of classrooms, computer labs, physical science labs, and sanitation facilities for enhanced education." },
+            { id: 3, title: "Residential Apartments", category: "residential", value: "MK554,000,000", client: "Mercantile Trust", year: "2019", location: "Area 43, Lilongwe", image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80", desc: "Premium multi-unit residential apartments featuring modern design and quality finishes in Lilongwe's prime location." },
+            { id: 4, title: "Health Facility Rehabilitation", category: "institutional", value: "MK120,000,000", client: "Ministry of Health", year: "2022-2023", location: "Central Region, Malawi", image: "https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=800&q=80", desc: "Comprehensive rehabilitation of health facilities to improve healthcare delivery standards." },
+            { id: 5, title: "Agricultural Infrastructure", category: "infrastructure", value: "MK95,000,000", client: "Ministry of Agriculture", year: "2021-2022", location: "Southern Region, Malawi", image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80", desc: "Construction of agricultural storage and processing facilities supporting food security initiatives." },
+            { id: 6, title: "Commercial Office Complex", category: "commercial", value: "MK200,000,000", client: "Private Client", year: "2020-2021", location: "Lilongwe City Centre", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80", desc: "Modern commercial office complex with sustainable design features and premium workspace environments." },
+        ];
+
+        const testimonials = [
+            { id: 1, name: "Dedza District Council", role: "Local Government Authority", text: "CK Construction delivered the Livuwazi Bridge project with exceptional quality and within the stipulated timeframe. Their professionalism and commitment to safety standards were outstanding.", rating: 5 },
+            { id: 2, name: "Ministry of Education", role: "Government Client", text: "The EQUALS project schools constructed by CK Construction have transformed learning environments. Their attention to detail and adherence to specifications exceeded our expectations.", rating: 5 },
+            { id: 3, name: "Mercantile Trust", role: "Private Developer", text: "Working with CK Construction on our residential apartments was a seamless experience. They maintained transparent communication and delivered premium quality workmanship.", rating: 5 },
+        ];
+
+        const team = [
+            { id: 1, name: "Kalino Kachulu", role: "Managing Director", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" },
+            { id: 2, name: "Project Engineer", role: "Senior Engineer", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" },
+            { id: 3, name: "Quantity Surveyor", role: "Cost Manager", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" },
+            { id: 4, name: "Safety Officer", role: "HSE Manager", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" },
+        ];
+
+        const stats = [
+            { label: "Years of Excellence", value: 24, suffix: "+" },
+            { label: "Projects Completed", value: 150, suffix: "+" },
+            { label: "Happy Clients", value: 80, suffix: "+" },
+            { label: "Team Members", value: 45, suffix: "+" },
+        ];
+
+        // ==================== COMPONENTS ====================
+
+        function AnimatedCounter({ value, suffix, duration = 2 }) {
+            const [count, setCount] = useState(0);
+            const ref = useRef(null);
+            const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+            useEffect(() => {
+                if (!isInView) return;
+                let start = 0;
+                const end = value;
+                const step = Math.max(1, Math.floor(end / 50));
+                const interval = (duration * 1000) / (end / step);
+                const timer = setInterval(() => {
+                    start += step;
+                    if (start >= end) {
+                        setCount(end);
+                        clearInterval(timer);
+                    } else {
+                        setCount(start);
+                    }
+                }, interval);
+                return () => clearInterval(timer);
+            }, [isInView, value, duration]);
+
+            return (
+                <span ref={ref} className="text-5xl md:text-6xl font-bold text-ck-accent font-serif">
+                    {count}{suffix}
+                </span>
+            );
+        }
+
+        function Navigation() {
+            const [scrolled, setScrolled] = useState(false);
+            const [mobileOpen, setMobileOpen] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 50);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const navLinks = [
+                { name: "Home", href: "#home" },
+                { name: "About", href: "#about" },
+                { name: "Services", href: "#services" },
+                { name: "Projects", href: "#projects" },
+                { name: "Team", href: "#team" },
+                { name: "Contact", href: "#contact" },
+            ];
+
+            return (
+                <>
+                    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'nav-scrolled py-3' : 'bg-transparent py-5'}`}>
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="flex items-center justify-between">
+                                <a href="#home" className="flex items-center gap-3 group">
+                                    <div className="w-10 h-10 bg-ck-accent rounded-lg flex items-center justify-center">
+                                        <span className="text-ck-dark font-bold text-lg">CK</span>
+                                    </div>
+                                    <div className="hidden sm:block">
+                                        <h1 className="text-white font-bold text-lg leading-tight">CK CONSTRUCTION</h1>
+                                        <p className="text-ck-accent text-xs tracking-widest">BUILDING EXCELLENCE</p>
+                                    </div>
+                                </a>
+
+                                <div className="hidden md:flex items-center gap-8">
+                                    {navLinks.map((link) => (
+                                        <a key={link.name} href={link.href} 
+                                           className="text-ck-text hover:text-white text-sm font-medium transition-colors duration-300 relative group">
+                                            {link.name}
+                                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-ck-accent transition-all duration-300 group-hover:w-full"></span>
+                                        </a>
+                                    ))}
+                                    <a href="#contact" className="btn-primary bg-ck-accent text-ck-dark px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-ck-accent-light transition-colors">
+                                        Get a Quote
+                                    </a>
+                                </div>
+
+                                <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden text-white text-2xl">
+                                    <i className={`fa-solid ${mobileOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
+                                </button>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <div className={`mobile-menu fixed top-0 right-0 w-80 h-full bg-ck-navy z-50 p-8 pt-20 ${mobileOpen ? 'open' : ''}`}>
+                        <div className="flex flex-col gap-6">
+                            {navLinks.map((link) => (
+                                <a key={link.name} href={link.href} 
+                                   onClick={() => setMobileOpen(false)}
+                                   className="text-white text-lg font-medium hover:text-ck-accent transition-colors">
+                                    {link.name}
+                                </a>
+                            ))}
+                            <a href="#contact" onClick={() => setMobileOpen(false)}
+                               className="btn-primary bg-ck-accent text-ck-dark px-6 py-3 rounded-lg font-semibold text-center mt-4">
+                                Get a Quote
+                            </a>
+                        </div>
+                    </div>
+                    {mobileOpen && <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setMobileOpen(false)}></div>}
+                </>
+            );
+        }
+
+        function HeroSection() {
+            return (
+                <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+                    <div className="absolute inset-0">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80" 
+                             alt="Construction site" 
+                             className="w-full h-full object-cover" />
+                        <div className="hero-overlay absolute inset-0"></div>
+                        <div className="absolute inset-0 grid-pattern opacity-30"></div>
+                    </div>
+
+                    <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+                        <div className="max-w-3xl">
+                            <motion.div 
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8 }}
+                                className="flex items-center gap-3 mb-6">
+                                <div className="deco-line"></div>
+                                <span className="text-ck-accent font-medium tracking-widest text-sm uppercase">Since 2001</span>
+                            </motion.div>
+
+                            <motion.h1 
+                                initial={{ opacity: 0, y: 40 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                                className="text-5xl md:text-7xl font-bold text-white font-serif leading-tight mb-6">
+                                Building <span className="text-ck-accent">Excellence</span><br/>
+                                Across Malawi
+                            </motion.h1>
+
+                            <motion.p 
+                                initial={{ opacity: 0, y: 40 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, delay: 0.4 }}
+                                className="text-ck-text text-lg md:text-xl mb-10 max-w-2xl leading-relaxed">
+                                CK Construction is a multi-disciplinary Building and Civil Engineering firm with over 24 years of experience delivering high-standard infrastructure across Education, Agriculture, and Health sectors.
+                            </motion.p>
+
+                            <motion.div 
+                                initial={{ opacity: 0, y: 40 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, delay: 0.6 }}
+                                className="flex flex-wrap gap-4">
+                                <a href="#projects" className="btn-primary bg-ck-accent text-ck-dark px-8 py-4 rounded-lg font-semibold text-lg hover:bg-ck-accent-light transition-colors inline-flex items-center gap-2">
+                                    View Our Projects <i className="fa-solid fa-arrow-right"></i>
+                                </a>
+                                <a href="#contact" className="border-2 border-white/30 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition-colors">
+                                    Contact Us
+                                </a>
+                            </motion.div>
+
+                            <motion.div 
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 1, delay: 1 }}
+                                className="mt-16 flex items-center gap-8">
+                                <div className="flex -space-x-3">
+                                    {[1,2,3,4].map(i => (
+                                        <div key={i} className="w-10 h-10 rounded-full border-2 border-ck-dark bg-ck-gray flex items-center justify-center text-xs text-white font-bold">
+                                            {i === 4 ? '80+' : <i className="fa-solid fa-user"></i>}
+                                        </div>
+                                    ))}
+                                </div>
+                                <div>
+                                    <p className="text-white font-semibold">80+ Satisfied Clients</p>
+                                    <p className="text-ck-text text-sm">Trusted by government & private sector</p>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
+
+                    <motion.div 
+                        animate={{ y: [0, 10, 0] }}
+                        transition={{ repeat: Infinity, duration: 2 }}
+                        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50">
+                        <i className="fa-solid fa-chevron-down text-2xl"></i>
+                    </motion.div>
+                </section>
+            );
+        }
+
+        function AboutSection() {
+            const ref = useRef(null);
+            const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+            return (
+                <section id="about" className="py-24 bg-ck-dark relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-ck-navy/50 to-transparent"></div>
+
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <div className="grid lg:grid-cols-2 gap-16 items-center">
+                            <motion.div 
+                                ref={ref}
+                                initial={{ opacity: 0, x: -50 }}
+                                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                                transition={{ duration: 0.8 }}
+                            >
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="deco-line"></div>
+                                    <span className="text-ck-accent font-medium tracking-widest text-sm uppercase">About Us</span>
+                                </div>
+                                <h2 className="text-4xl md:text-5xl font-bold text-white font-serif mb-6">
+                                    Building Malawi's Future<br/>Since <span className="text-ck-accent">2001</span>
+                                </h2>
+                                <p className="text-ck-text text-lg leading-relaxed mb-6">
+                                    CK Construction is a multi-disciplinary Building and Civil Engineering firm duly registered with the Government of Malawi's Registrar of Business Names and the Construction Industry Regulatory Authority (CIRA) in the MK500 million category.
+                                </p>
+                                <p className="text-ck-text leading-relaxed mb-8">
+                                    Initially registered on 5th February 2001 under the name Kachulu Building Contractors, the business evolved to CK Construction on 3rd September 2013. With over 24 years of operation, we have gained extensive experience in delivering high-standard construction projects of varying sizes and complexity.
+                                </p>
+
+                                <div className="grid grid-cols-2 gap-4 mb-8">
+                                    {[
+                                        { icon: "fa-check-circle", text: "CIRA Registered" },
+                                        { icon: "fa-check-circle", text: "PPDA Certified" },
+                                        { icon: "fa-check-circle", text: "VAT Compliant" },
+                                        { icon: "fa-check-circle", text: "Tax Compliant" },
+                                    ].map((item, i) => (
+                                        <div key={i} className="flex items-center gap-2 text-white">
+                                            <i className={`fa-solid ${item.icon} text-ck-accent`}></i>
+                                            <span className="text-sm">{item.text}</span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <a href="#contact" className="btn-primary bg-ck-accent text-ck-dark px-8 py-3 rounded-lg font-semibold inline-flex items-center gap-2 hover:bg-ck-accent-light transition-colors">
+                                    Learn More <i className="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </motion.div>
+
+                            <motion.div 
+                                initial={{ opacity: 0, x: 50 }}
+                                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                                className="relative"
+                            >
+                                <div className="relative rounded-2xl overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" 
+                                         alt="Construction team" 
+                                         className="w-full h-[500px] object-cover" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-ck-dark/80 to-transparent"></div>
+                                    <div className="absolute bottom-6 left-6 right-6">
+                                        <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+                                            <p className="text-white font-semibold mb-1">Kalino Kachulu</p>
+                                            <p className="text-ck-accent text-sm">Managing Director</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="absolute -bottom-6 -left-6 bg-ck-accent rounded-xl p-6 shadow-2xl">
+                                    <p className="text-ck-dark font-bold text-3xl">24+</p>
+                                    <p className="text-ck-dark/80 text-sm">Years Experience</p>
+                                </div>
+                            </motion.div>
+                        </div>
+
+                        <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8">
+                            {stats.map((stat, i) => (
+                                <motion.div 
+                                    key={i}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                                    className="text-center p-6 rounded-2xl bg-ck-navy/50 border border-ck-gray/50"
+                                >
+                                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                                    <p className="text-ck-text mt-2 text-sm">{stat.label}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        function MissionSection() {
+            const ref = useRef(null);
+            const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+            const values = [
+                { title: "Excellence", icon: "fa-star", desc: "Delivering optimal cost-effective solutions that fulfil client specifications" },
+                { title: "Integrity", icon: "fa-shield-halved", desc: "Acting with reliability, honesty, and fairness in all dealings" },
+                { title: "Commitment", icon: "fa-handshake", desc: "Putting clients first and promoting long-term relationships" },
+                { title: "Safety", icon: "fa-helmet-safety", desc: "Zero tolerance for incidents; full safety compliance on all sites" },
+            ];
+
+            return (
+                <section className="py-24 bg-gradient-to-b from-ck-dark to-ck-navy relative">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <div className="flex items-center justify-center gap-3 mb-4">
+                                <div className="deco-line"></div>
+                                <span className="text-ck-accent font-medium tracking-widest text-sm uppercase">Our Foundation</span>
+                                <div className="deco-line"></div>
+                            </div>
+                            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif">Mission, Vision & Values</h2>
+                        </div>
+
+                        <div ref={ref} className="grid md:grid-cols-2 gap-8 mb-16">
+                            <motion.div 
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.6 }}
+                                className="bg-ck-navy/60 rounded-2xl p-8 border border-ck-gray/30"
+                            >
+                                <div className="w-14 h-14 bg-ck-accent/20 rounded-xl flex items-center justify-center mb-6">
+                                    <i className="fa-solid fa-bullseye text-ck-accent text-2xl"></i>
+                                </div>
+                                <h3 className="text-2xl font-bold text-white mb-4">Mission Statement</h3>
+                                <p className="text-ck-text leading-relaxed">
+                                    To contribute to developing, building, and servicing Malawi's requirements for beautiful and strong infrastructure.
+                                </p>
+                            </motion.div>
+
+                            <motion.div 
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.6, delay: 0.2 }}
+                                className="bg-ck-navy/60 rounded-2xl p-8 border border-ck-gray/30"
+                            >
+                                <div className="w-14 h-14 bg-ck-accent/20 rounded-xl flex items-center justify-center mb-6">
+                                    <i className="fa-solid fa-eye text-ck-accent text-2xl"></i>
+                                </div>
+                                <h3 className="text-2xl font-bold text-white mb-4">Vision Statement</h3>
+                                <p className="text-ck-text leading-relaxed">
+                                    To be a leading local construction company through maintaining professional standards within the construction industry in Malawi.
+                                </p>
+                            </motion.div>
+                        </div>
+
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {values.map((value, i) => (
+                                <motion.div 
+                                    key={i}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                                    className="group bg-ck-navy/40 rounded-2xl p-6 border border-ck-gray/20 hover:border-ck-accent/50 transition-all duration-300 hover:-translate-y-2"
+                                >
+                                    <div className="w-12 h-12 bg-ck-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-ck-accent/20 transition-colors">
+                                        <i className={`fa-solid ${value.icon} text-ck-accent text-xl`}></i>
+                                    </div>
+                                    <h4 className="text-xl font-bold text-white mb-2">{value.title}</h4>
+                                    <p className="text-ck-text text-sm leading-relaxed">{value.desc}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        function ServicesSection() {
+            const [activeFilter, setActiveFilter] = useState('all');
+            const filters = [
+                { label: "All Services", value: "all" },
+                { label: "Institutional", value: "institutional" },
+                { label: "Residential", value: "residential" },
+                { label: "Commercial", value: "commercial" },
+                { label: "Infrastructure", value: "infrastructure" },
+            ];
+
+            const filteredServices = activeFilter === 'all' 
+                ? services 
+                : services.filter(s => s.category === activeFilter);
+
+            return (
+                <section id="services" className="py-24 bg-ck-dark relative">
+                    <div className="absolute inset-0 grid-pattern opacity-20"></div>
+
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <div className="text-center mb-12">
+                            <div className="flex items-center justify-center gap-3 mb-4">
+                                <div className="deco-line"></div>
+                                <span className="text-ck-accent font-medium tracking-widest text-sm uppercase">What We Do</span>
+                                <div className="deco-line"></div>
+                            </div>
+                            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif mb-4">Our Core Services</h2>
+                            <p className="text-ck-text max-w-2xl mx-auto">
+                                Comprehensive construction and civil engineering solutions tailored to meet diverse infrastructure needs across Malawi.
+                            </p>
+                        </div>
+
+                        <div className="flex flex-wrap justify-center gap-3 mb-12">
+                            {filters.map((filter) => (
+                                <button
+                                    key={filter.value}
+                                    onClick={() => setActiveFilter(filter.value)}
+                                    className={`filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 border border-ck-gray/50 ${
+                                        activeFilter === filter.value 
+                                            ? 'active border-ck-accent' 
+                                            : 'text-ck-text hover:text-white hover:border-ck-accent/50'
+                                    }`}
+                                >
+                                    {filter.label}
+                                </button>
+                            ))}
+                        </div>
+
+                        <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <AnimatePresence>
+                                {filteredServices.map((service) => (
+                                    <motion.div
+                                        key={service.id}
+                                        layout
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.9 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="service-card bg-ck-navy/60 rounded-2xl p-6 border border-ck-gray/20 cursor-pointer group"
+                                    >
+                                        <div className="service-icon w-14 h-14 bg-ck-accent/10 rounded-xl flex items-center justify-center mb-5 transition-all duration-300">
+                                            <i className={`fa-solid ${service.icon} text-ck-accent text-2xl`}></i>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-ck-accent transition-colors">
+                                            {service.title}
+                                        </h3>
+                                        <p className="text-ck-text text-sm leading-relaxed">{service.desc}</p>
+                                        <div className="mt-4 flex items-center gap-2 text-ck-accent text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <span>Learn More</span>
+                                            <i className="fa-solid fa-arrow-right text-xs"></i>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
+                        </motion.div>
+
+                        <div className="mt-20 grid md:grid-cols-3 gap-8">
+                            {[
+                                { icon: "fa-trophy", title: "Proven Track Record", desc: "Over 24 years of successful project delivery. Never failed to complete a contracted work." },
+                                { icon: "fa-truck-monster", title: "Fully Equipped", desc: "Own plant and equipment including concrete mixers, dumpy levels, generators, scaffolding, and SSB machines." },
+                                { icon: "fa-user-graduate", title: "Qualified Personnel", desc: "Experienced team including Project Engineers, Quantity Surveyors, Safety Officers, and skilled artisans." },
+                            ].map((item, i) => (
+                                <motion.div 
+                                    key={i}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                                    className="flex gap-4"
+                                >
+                                    <div className="w-12 h-12 bg-ck-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i className={`fa-solid ${item.icon} text-ck-accent text-xl`}></i>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-lg font-bold text-white mb-2">{item.title}</h4>
+                                        <p className="text-ck-text text-sm">{item.desc}</p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        function ProjectsSection() {
+            const [activeFilter, setActiveFilter] = useState('all');
+            const [selectedProject, setSelectedProject] = useState(null);
+
+            const filters = [
+                { label: "All Projects", value: "all" },
+                { label: "Institutional", value: "institutional" },
+                { label: "Residential", value: "residential" },
+                { label: "Commercial", value: "commercial" },
+                { label: "Infrastructure", value: "infrastructure" },
+            ];
+
+            const filteredProjects = activeFilter === 'all' 
+                ? projects 
+                : projects.filter(p => p.category === activeFilter);
+
+            return (
+                <section id="projects" className="py-24 bg-gradient-to-b from-ck-navy to-ck-dark relative">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-12">
+                            <div className="flex items-center justify-center gap-3 mb-4">
+                                <div className="deco-line"></div>
+                                <span className="text-ck-accent font-medium tracking-widest text-sm uppercase">Portfolio</span>
+                                <div className="deco-line"></div>
+                            </div>
+                            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif mb-4">Featured Projects</h2>
+                            <p className="text-ck-text max-w-2xl mx-auto">
+                                A showcase of our completed and ongoing construction projects across Malawi, demonstrating our commitment to quality and excellence.
+                            </p>
+                        </div>
+
+                        <div className="flex flex-wrap justify-center gap-3 mb-12">
+                            {filters.map((filter) => (
+                                <button
+                                    key={filter.value}
+                                    onClick={() => setActiveFilter(filter.value)}
+                                    className={`filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 border border-ck-gray/50 ${
+                                        activeFilter === filter.value 
+                                            ? 'active border-ck-accent' 
+                                            : 'text-ck-text hover:text-white hover:border-ck-accent/50'
+                                    }`}
+                                >
+                                    {filter.label}
+                                </button>
+                            ))}
+                        </div>
+
+                        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <AnimatePresence>
+                                {filteredProjects.map((project) => (
+                                    <motion.div
+                                        key={project.id}
+                                        layout
+                                        initial={{ opacity: 0, y: 30 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: 30 }}
+                                        transition={{ duration: 0.4 }}
+                                        className="group relative rounded-2xl overflow-hidden cursor-pointer"
+                                        onClick={() => setSelectedProject(project)}
+                                    >
+                                        <div className="aspect-[4/3] overflow-hidden">
+                                            <img src={project.image} 
+                                                 alt={project.title} 
+                                                 className="w-full h-full object-cover img-zoom" />
+                                        </div>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-ck-dark via-ck-dark/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+
+                                        <div className="absolute bottom-0 left-0 right-0 p-6">
+                                            <span className="text-ck-accent text-xs font-medium uppercase tracking-wider mb-2 block">
+                                                {project.category}
+                                            </span>
+                                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-ck-accent transition-colors">
+                                                {project.title}
+                                            </h3>
+                                            <div className="flex items-center gap-4 text-ck-text text-sm">
+                                                <span><i className="fa-solid fa-location-dot mr-1"></i> {project.location}</span>
+                                                <span><i className="fa-solid fa-calendar mr-1"></i> {project.year}</span>
+                                            </div>
+                                        </div>
+
+                                        <div className="absolute top-4 right-4 w-10 h-10 bg-ck-accent/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <i className="fa-solid fa-expand text-ck-accent"></i>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
+                        </motion.div>
+
+                        <AnimatePresence>
+                            {selectedProject && (
+                                <motion.div 
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+                                    onClick={() => setSelectedProject(null)}
+                                >
+                                    <motion.div 
+                                        initial={{ scale: 0.9, opacity: 0 }}
+                                        animate={{ scale: 1, opacity: 1 }}
+                                        exit={{ scale: 0.9, opacity: 0 }}
+                                        className="bg-ck-navy rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-ck-gray/30"
+                                        onClick={e => e.stopPropagation()}
+                                    >
+                                        <div className="relative">
+                                            <img src={selectedProject.image} 
+                                                 alt={selectedProject.title} 
+                                                 className="w-full h-64 object-cover" />
+                                            <button 
+                                                onClick={() => setSelectedProject(null)}
+                                                className="absolute top-4 right-4 w-10 h-10 bg-ck-dark/80 rounded-full flex items-center justify-center text-white hover:bg-ck-accent transition-colors"
+                                            >
+                                                <i className="fa-solid fa-xmark"></i>
+                                            </button>
+                                        </div>
+                                        <div className="p-8">
+                                            <span className="text-ck-accent text-sm font-medium uppercase tracking-wider">{selectedProject.category}</span>
+                                            <h3 className="text-2xl font-bold text-white mt-2 mb-4">{selectedProject.title}</h3>
+                                            <p className="text-ck-text mb-6">{selectedProject.desc}</p>
+
+                                            <div className="grid grid-cols-2 gap-4 mb-6">
+                                                <div className="bg-ck-dark/50 rounded-lg p-4">
+                                                    <p className="text-ck-text text-xs mb-1">Contract Value</p>
+                                                    <p className="text-white font-bold">{selectedProject.value}</p>
+                                                </div>
+                                                <div className="bg-ck-dark/50 rounded-lg p-4">
+                                                    <p className="text-ck-text text-xs mb-1">Client</p>
+                                                    <p className="text-white font-bold">{selectedProject.client}</p>
+                                                </div>
+                                                <div className="bg-ck-dark/50 rounded-lg p-4">
+                                                    <p className="text-ck-text text-xs mb-1">Location</p>
+                                                    <p className="text-white font-bold">{selectedProject.location}</p>
+                                                </div>
+                                                <div className="bg-ck-dark/50 rounded-lg p-4">
+                                                    <p className="text-ck-text text-xs mb-1">Year</p>
+                                                    <p className="text-white font-bold">{selectedProject.year}</p>
+                                                </div>
+                                            </div>
+
+                                            <a href="#contact" 
+                                               onClick={() => setSelectedProject(null)}
+                                               className="btn-primary bg-ck-accent text-ck-dark px-6 py-3 rounded-lg font-semibold inline-flex items-center gap-2 hover:bg-ck-accent-light transition-colors w-full justify-center">
+                                                Discuss a Similar Project <i className="fa-solid fa-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                    </motion.div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+                </section>
+            );
+        }
+
+        function TestimonialsSection() {
+            const [current, setCurrent] = useState(0);
+
+            useEffect(() => {
+                const timer = setInterval(() => {
+                    setCurrent(prev => (prev + 1) % testimonials.length);
+                }, 5000);
+                return () => clearInterval(timer);
+            }, []);
+
+            return (
+                <section className="py-24 bg-ck-dark relative overflow-hidden">
+                    <div className="absolute top-0 left-1/4 w-96 h-96 bg-ck-accent/5 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-ck-blue/20 rounded-full blur-3xl"></div>
+
+                    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <div className="text-center mb-16">
+                            <div className="flex items-center justify-center gap-3 mb-4">
+                                <div className="deco-line"></div>
+                                <span className="text-ck-accent font-medium tracking-widest text-sm uppercase">Testimonials</span>
+                                <div className="deco-line"></div>
+                            </div>
+                            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif">What Our Clients Say</h2>
+                        </div>
+
+                        <div className="relative">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={current}
+                                    initial={{ opacity: 0, x: 50 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: -50 }}
+                                    transition={{ duration: 0.5 }}
+                                    className="bg-ck-navy/60 rounded-2xl p-8 md:p-12 border border-ck-gray/20 text-center"
+                                >
+                                    <div className="flex justify-center mb-6">
+                                        {[...Array(testimonials[current].rating)].map((_, i) => (
+                                            <i key={i} className="fa-solid fa-star text-ck-accent text-lg mx-0.5"></i>
+                                        ))}
+                                    </div>
+
+                                    <i className="fa-solid fa-quote-left text-ck-accent/30 text-4xl mb-6 block"></i>
+
+                                    <p className="text-white text-lg md:text-xl leading-relaxed mb-8 max-w-3xl mx-auto">
+                                        "{testimonials[current].text}"
+                                    </p>
+
+                                    <div className="flex items-center justify-center gap-4">
+                                        <div className="w-12 h-12 bg-ck-accent/20 rounded-full flex items-center justify-center">
+                                            <i className="fa-solid fa-building text-ck-accent"></i>
+                                        </div>
+                                        <div className="text-left">
+                                            <p className="text-white font-semibold">{testimonials[current].name}</p>
+                                            <p className="text-ck-accent text-sm">{testimonials[current].role}</p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            </AnimatePresence>
+
+                            <div className="flex justify-center gap-3 mt-8">
+                                {testimonials.map((_, i) => (
+                                    <button
+                                        key={i}
+                                        onClick={() => setCurrent(i)}
+                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                                            i === current ? 'bg-ck-accent w-8' : 'bg-ck-gray hover:bg-ck-text'
+                                        }`}
+                                    />
+                                ))}
+                            </div>
+
+                            <button 
+                                onClick={() => setCurrent(prev => (prev - 1 + testimonials.length) % testimonials.length)}
+                                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 w-12 h-12 bg-ck-navy/80 rounded-full flex items-center justify-center text-white hover:bg-ck-accent hover:text-ck-dark transition-colors border border-ck-gray/30"
+                            >
+                                <i className="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button 
+                                onClick={() => setCurrent(prev => (prev + 1) % testimonials.length)}
+                                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 w-12 h-12 bg-ck-navy/80 rounded-full flex items-center justify-center text-white hover:bg-ck-accent hover:text-ck-dark transition-colors border border-ck-gray/30"
+                            >
+                                <i className="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        function TeamSection() {
+            return (
+                <section id="team" className="py-24 bg-gradient-to-b from-ck-dark to-ck-navy relative">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <div className="flex items-center justify-center gap-3 mb-4">
+                                <div className="deco-line"></div>
+                                <span className="text-ck-accent font-medium tracking-widest text-sm uppercase">Our People</span>
+                                <div className="deco-line"></div>
+                            </div>
+                            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif mb-4">Leadership Team</h2>
+                            <p className="text-ck-text max-w-2xl mx-auto">
+                                Experienced professionals dedicated to delivering excellence in every project we undertake.
+                            </p>
+                        </div>
+
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {team.map((member, i) => (
+                                <motion.div 
+                                    key={member.id}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                                    className="group relative rounded-2xl overflow-hidden"
+                                >
+                                    <div className="aspect-[3/4] overflow-hidden">
+                                        <img src={member.image} 
+                                             alt={member.name} 
+                                             className="w-full h-full object-cover img-zoom" />
+                                    </div>
+                                    <div className="team-overlay absolute inset-0 flex flex-col justify-end p-6">
+                                        <h3 className="text-xl font-bold text-white group-hover:text-ck-accent transition-colors">
+                                            {member.name}
+                                        </h3>
+                                        <p className="text-ck-text text-sm">{member.role}</p>
+                                        <div className="flex gap-3 mt-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <a href="#" className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-ck-accent hover:text-ck-dark transition-colors">
+                                                <i className="fa-brands fa-linkedin-in text-sm"></i>
+                                            </a>
+                                            <a href="#" className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-ck-accent hover:text-ck-dark transition-colors">
+                                                <i className="fa-solid fa-envelope text-sm"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        <motion.div 
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="mt-16 bg-ck-navy/40 rounded-2xl p-8 border border-ck-gray/20"
+                        >
+                            <div className="grid md:grid-cols-2 gap-8 items-center">
+                                <div>
+                                    <h3 className="text-2xl font-bold text-white mb-4">Our Site Team</h3>
+                                    <p className="text-ck-text leading-relaxed mb-6">
+                                        Behind every successful project is a dedicated team of skilled artisans, engineers, and safety professionals. Our workforce is trained to the highest standards, ensuring quality workmanship and strict adherence to safety protocols on every site.
+                                    </p>
+                                    <div className="flex flex-wrap gap-4">
+                                        <div className="flex items-center gap-2">
+                                            <i className="fa-solid fa-users text-ck-accent"></i>
+                                            <span className="text-white text-sm">45+ Team Members</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <i className="fa-solid fa-helmet-safety text-ck-accent"></i>
+                                            <span className="text-white text-sm">Safety Certified</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <i className="fa-solid fa-award text-ck-accent"></i>
+                                            <span className="text-white text-sm">Skilled Artisans</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="rounded-xl overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" 
+                                         alt="Construction team at work" 
+                                         className="w-full h-64 object-cover" />
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+            );
+        }
+
+        function ContactSection() {
+            const [formData, setFormData] = useState({ name: '', email: '', phone: '', service: '', message: '' });
+            const [errors, setErrors] = useState({});
+            const [submitted, setSubmitted] = useState(false);
+
+            const validate = () => {
+                const newErrors = {};
+                if (!formData.name.trim()) newErrors.name = "Name is required";
+                if (!formData.email.trim()) newErrors.email = "Email is required";
+                else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = "Invalid email";
+                if (!formData.message.trim()) newErrors.message = "Message is required";
+                setErrors(newErrors);
+                return Object.keys(newErrors).length === 0;
+            };
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                if (validate()) {
+                    setSubmitted(true);
+                    setTimeout(() => {
+                        setSubmitted(false);
+                        setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+                    }, 3000);
+                }
+            };
+
+            const handleChange = (e) => {
+                setFormData({ ...formData, [e.target.name]: e.target.value });
+                if (errors[e.target.name]) {
+                    setErrors({ ...errors, [e.target.name]: '' });
+                }
+            };
+
+            return (
+                <section id="contact" className="py-24 bg-ck-dark relative">
+                    <div className="absolute inset-0 grid-pattern opacity-10"></div>
+
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <div className="text-center mb-16">
+                            <div className="flex items-center justify-center gap-3 mb-4">
+                                <div className="deco-line"></div>
+                                <span className="text-ck-accent font-medium tracking-widest text-sm uppercase">Get In Touch</span>
+                                <div className="deco-line"></div>
+                            </div>
+                            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif mb-4">Contact Us</h2>
+                            <p className="text-ck-text max-w-2xl mx-auto">
+                                Ready to start your next construction project? Reach out to us for a consultation and quote.
+                            </p>
+                        </div>
+
+                        <div className="grid lg:grid-cols-2 gap-12">
+                            <motion.div 
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                className="space-y-8"
+                            >
+                                <div className="bg-ck-navy/60 rounded-2xl p-8 border border-ck-gray/20">
+                                    <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
+
+                                    <div className="space-y-6">
+                                        <div className="flex items-start gap-4">
+                                            <div className="w-12 h-12 bg-ck-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                <i className="fa-solid fa-location-dot text-ck-accent text-xl"></i>
+                                            </div>
+                                            <div>
+                                                <p className="text-white font-semibold mb-1">Physical Address</p>
+                                                <p className="text-ck-text text-sm">House No. 24/1/58, Area 24, Lilongwe, Malawi</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex items-start gap-4">
+                                            <div className="w-12 h-12 bg-ck-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                <i className="fa-solid fa-envelope text-ck-accent text-xl"></i>
+                                            </div>
+                                            <div>
+                                                <p className="text-white font-semibold mb-1">Email</p>
+                                                <p className="text-ck-text text-sm">ckconstruction02@gmail.com</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex items-start gap-4">
+                                            <div className="w-12 h-12 bg-ck-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                <i className="fa-solid fa-phone text-ck-accent text-xl"></i>
+                                            </div>
+                                            <div>
+                                                <p className="text-white font-semibold mb-1">Phone</p>
+                                                <p className="text-ck-text text-sm">+265 (0) 881 010 605</p>
+                                                <p className="text-ck-text text-sm">+265 (0) 999 656 597</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex items-start gap-4">
+                                            <div className="w-12 h-12 bg-ck-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                <i className="fa-solid fa-box-archive text-ck-accent text-xl"></i>
+                                            </div>
+                                            <div>
+                                                <p className="text-white font-semibold mb-1">Postal Address</p>
+                                                <p className="text-ck-text text-sm">P.O. Box 2441, Lilongwe, Malawi</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-ck-navy/60 rounded-2xl p-8 border border-ck-gray/20">
+                                    <h3 className="text-xl font-bold text-white mb-4">Certifications</h3>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        {[
+                                            { icon: "fa-certificate", text: "CIRA Registered" },
+                                            { icon: "fa-file-contract", text: "PPDA Certified" },
+                                            { icon: "fa-receipt", text: "VAT Compliant" },
+                                            { icon: "fa-scale-balanced", text: "Tax Compliant" },
+                                        ].map((cert, i) => (
+                                            <div key={i} className="flex items-center gap-2 text-ck-text">
+                                                <i className={`fa-solid ${cert.icon} text-ck-accent text-sm`}></i>
+                                                <span className="text-sm">{cert.text}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </motion.div>
+
+                            <motion.div 
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                            >
+                                <form onSubmit={handleSubmit} className="bg-ck-navy/60 rounded-2xl p-8 border border-ck-gray/20">
+                                    <h3 className="text-2xl font-bold text-white mb-6">Send Us a Message</h3>
+
+                                    {submitted ? (
+                                        <motion.div 
+                                            initial={{ opacity: 0, scale: 0.9 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            className="bg-green-500/20 border border-green-500/30 rounded-xl p-6 text-center"
+                                        >
+                                            <i className="fa-solid fa-check-circle text-green-400 text-4xl mb-3"></i>
+                                            <p className="text-white font-semibold text-lg">Message Sent Successfully!</p>
+                                            <p className="text-green-400/80 text-sm mt-1">We'll get back to you within 24 hours.</p>
+                                        </motion.div>
+                                    ) : (
+                                        <div className="space-y-5">
+                                            <div>
+                                                <label className="text-ck-text text-sm mb-2 block">Full Name *</label>
+                                                <input 
+                                                    type="text" 
+                                                    name="name"
+                                                    value={formData.name}
+                                                    onChange={handleChange}
+                                                    className={`form-input w-full bg-ck-dark/50 border ${errors.name ? 'border-red-500' : 'border-ck-gray/30'} rounded-lg px-4 py-3 text-white placeholder-ck-text/50 focus:outline-none transition-all`}
+                                                    placeholder="Your full name"
+                                                />
+                                                {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
+                                            </div>
+
+                                            <div className="grid sm:grid-cols-2 gap-5">
+                                                <div>
+                                                    <label className="text-ck-text text-sm mb-2 block">Email Address *</label>
+                                                    <input 
+                                                        type="email" 
+                                                        name="email"
+                                                        value={formData.email}
+                                                        onChange={handleChange}
+                                                        className={`form-input w-full bg-ck-dark/50 border ${errors.email ? 'border-red-500' : 'border-ck-gray/30'} rounded-lg px-4 py-3 text-white placeholder-ck-text/50 focus:outline-none transition-all`}
+                                                        placeholder="your@email.com"
+                                                    />
+                                                    {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
+                                                </div>
+                                                <div>
+                                                    <label className="text-ck-text text-sm mb-2 block">Phone Number</label>
+                                                    <input 
+                                                        type="tel" 
+                                                        name="phone"
+                                                        value={formData.phone}
+                                                        onChange={handleChange}
+                                                        className="form-input w-full bg-ck-dark/50 border border-ck-gray/30 rounded-lg px-4 py-3 text-white placeholder-ck-text/50 focus:outline-none transition-all"
+                                                        placeholder="+265 ..."
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label className="text-ck-text text-sm mb-2 block">Service Interested In</label>
+                                                <select 
+                                                    name="service"
+                                                    value={formData.service}
+                                                    onChange={handleChange}
+                                                    className="form-input w-full bg-ck-dark/50 border border-ck-gray/30 rounded-lg px-4 py-3 text-white focus:outline-none transition-all"
+                                                >
+                                                    <option value="">Select a service</option>
+                                                    <option value="health">Health Facilities</option>
+                                                    <option value="school">School Blocks</option>
+                                                    <option value="office">Office Buildings</option>
+                                                    <option value="residential">Residential Houses</option>
+                                                    <option value="bridge">Bridges</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                            </div>
+
+                                            <div>
+                                                <label className="text-ck-text text-sm mb-2 block">Message *</label>
+                                                <textarea 
+                                                    name="message"
+                                                    value={formData.message}
+                                                    onChange={handleChange}
+                                                    rows="4"
+                                                    className={`form-input w-full bg-ck-dark/50 border ${errors.message ? 'border-red-500' : 'border-ck-gray/30'} rounded-lg px-4 py-3 text-white placeholder-ck-text/50 focus:outline-none transition-all resize-none`}
+                                                    placeholder="Tell us about your project..."
+                                                ></textarea>
+                                                {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
+                                            </div>
+
+                                            <button 
+                                                type="submit"
+                                                className="btn-primary w-full bg-ck-accent text-ck-dark py-4 rounded-lg font-semibold text-lg hover:bg-ck-accent-light transition-colors flex items-center justify-center gap-2"
+                                            >
+                                                <i className="fa-solid fa-paper-plane"></i>
+                                                Send Message
+                                            </button>
+                                        </div>
+                                    )}
+                                </form>
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        function Footer() {
+            const [email, setEmail] = useState('');
+            const [subscribed, setSubscribed] = useState(false);
+
+            const handleSubscribe = (e) => {
+                e.preventDefault();
+                if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    setSubscribed(true);
+                    setEmail('');
+                    setTimeout(() => setSubscribed(false), 3000);
+                }
+            };
+
+            return (
+                <footer className="bg-ck-navy border-t border-ck-gray/20">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                        <div className="bg-gradient-to-r from-ck-blue/30 to-ck-accent/10 rounded-2xl p-8 md:p-12 border border-ck-gray/20">
+                            <div className="grid md:grid-cols-2 gap-8 items-center">
+                                <div>
+                                    <h3 className="text-2xl md:text-3xl font-bold text-white font-serif mb-3">
+                                        Stay Updated
+                                    </h3>
+                                    <p className="text-ck-text">
+                                        Subscribe to our newsletter for the latest projects, industry insights, and company updates.
+                                    </p>
+                                </div>
+                                <div>
+                                    {subscribed ? (
+                                        <motion.div 
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            className="flex items-center gap-3 text-green-400"
+                                        >
+                                            <i className="fa-solid fa-check-circle text-xl"></i>
+                                            <span className="font-semibold">Successfully Subscribed!</span>
+                                        </motion.div>
+                                    ) : (
+                                        <form onSubmit={handleSubscribe} className="flex gap-3">
+                                            <input 
+                                                type="email"
+                                                value={email}
+                                                onChange={(e) => setEmail(e.target.value)}
+                                                placeholder="Enter your email"
+                                                className="form-input flex-1 bg-ck-dark/50 border border-ck-gray/30 rounded-lg px-4 py-3 text-white placeholder-ck-text/50 focus:outline-none transition-all"
+                                                required
+                                            />
+                                            <button 
+                                                type="submit"
+                                                className="btn-primary bg-ck-accent text-ck-dark px-6 py-3 rounded-lg font-semibold hover:bg-ck-accent-light transition-colors flex items-center gap-2"
+                                            >
+                                                <i className="fa-solid fa-arrow-right"></i>
+                                                <span className="hidden sm:inline">Subscribe</span>
+                                            </button>
+                                        </form>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                        <div className="grid md:grid-cols-4 gap-8 mb-12">
+                            <div className="md:col-span-1">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="w-10 h-10 bg-ck-accent rounded-lg flex items-center justify-center">
+                                        <span className="text-ck-dark font-bold text-lg">CK</span>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-white font-bold">CK CONSTRUCTION</h4>
+                                        <p className="text-ck-accent text-xs">Building Excellence</p>
+                                    </div>
+                                </div>
+                                <p className="text-ck-text text-sm leading-relaxed mb-4">
+                                    A multi-disciplinary Building and Civil Engineering firm delivering high-standard construction projects across Malawi since 2001.
+                                </p>
+                                <div className="flex gap-3">
+                                    <a href="#" className="w-9 h-9 bg-ck-gray/50 rounded-lg flex items-center justify-center text-ck-text hover:bg-ck-accent hover:text-ck-dark transition-colors">
+                                        <i className="fa-brands fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" className="w-9 h-9 bg-ck-gray/50 rounded-lg flex items-center justify-center text-ck-text hover:bg-ck-accent hover:text-ck-dark transition-colors">
+                                        <i className="fa-brands fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="#" className="w-9 h-9 bg-ck-gray/50 rounded-lg flex items-center justify-center text-ck-text hover:bg-ck-accent hover:text-ck-dark transition-colors">
+                                        <i className="fa-brands fa-twitter"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 className="text-white font-semibold mb-4">Quick Links</h4>
+                                <ul className="space-y-3">
+                                    {['Home', 'About Us', 'Services', 'Projects', 'Team', 'Contact'].map(link => (
+                                        <li key={link}>
+                                            <a href={`#${link.toLowerCase().replace(' ', '')}`} 
+                                               className="text-ck-text hover:text-ck-accent transition-colors text-sm">
+                                                {link}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h4 className="text-white font-semibold mb-4">Services</h4>
+                                <ul className="space-y-3">
+                                    {['Health Facilities', 'School Blocks', 'Office Buildings', 'Residential Houses', 'Bridges', 'Markets'].map(service => (
+                                        <li key={service}>
+                                            <a href="#services" className="text-ck-text hover:text-ck-accent transition-colors text-sm">
+                                                {service}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h4 className="text-white font-semibold mb-4">Contact</h4>
+                                <ul className="space-y-3">
+                                    <li className="flex items-start gap-3 text-ck-text text-sm">
+                                        <i className="fa-solid fa-location-dot text-ck-accent mt-1"></i>
+                                        <span>House No. 24/1/58, Area 24, Lilongwe</span>
+                                    </li>
+                                    <li className="flex items-start gap-3 text-ck-text text-sm">
+                                        <i className="fa-solid fa-phone text-ck-accent mt-1"></i>
+                                        <span>+265 (0) 881 010 605<br/>+265 (0) 999 656 597</span>
+                                    </li>
+                                    <li className="flex items-start gap-3 text-ck-text text-sm">
+                                        <i className="fa-solid fa-envelope text-ck-accent mt-1"></i>
+                                        <span>ckconstruction02@gmail.com</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div className="border-t border-ck-gray/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                            <p className="text-ck-text text-sm">
+                                &copy; 2026 CK Construction. All rights reserved. Building Excellence Since 2001.
+                            </p>
+                            <div className="flex gap-6 text-ck-text text-sm">
+                                <a href="#" className="hover:text-ck-accent transition-colors">Privacy Policy</a>
+                                <a href="#" className="hover:text-ck-accent transition-colors">Terms of Service</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            );
+        }
+
+        function App() {
+            return (
+                <div className="min-h-screen bg-ck-dark">
+                    <Navigation />
+                    <HeroSection />
+                    <AboutSection />
+                    <MissionSection />
+                    <ServicesSection />
+                    <ProjectsSection />
+                    <TestimonialsSection />
+                    <TeamSection />
+                    <ContactSection />
+                    <Footer />
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
